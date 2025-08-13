@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carte Roadtrip</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    // Coordonnées centrées sur l’Australie
+    var map = L.map('map').setView([-25.2744, 133.7751], 4);
+
+    // Fond de carte OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Exemple de points
+    var points = [
+        {lat: -31.9505, lon: 115.8605, name: "Perth"},
+        {lat: -15.776, lon: 128.738, name: "Kununurra"},
+        {lat: -12.4634, lon: 130.8456, name: "Darwin"}
+    ];
+
+    points.forEach(function(point) {
+        L.marker([point.lat, point.lon])
+         .addTo(map)
+         .bindPopup(point.name);
+    });
+</script>
+
+</body>
+</html>
